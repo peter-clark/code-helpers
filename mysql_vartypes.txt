@@ -1,6 +1,0 @@
-INT
-DECIMAL (M,N)   - (M-total digits, N-after decimal)
-VARCHAR(N)      - string of length N
-BLOB            - Binary Large Object
-DATE            - 'YYYY-MM-DD'
-TIMESTAMP       - 'YYYY-MM-DD HH:MM:SS'
