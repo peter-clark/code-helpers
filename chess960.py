@@ -49,17 +49,19 @@ def isValid960Pos(pos):
                     return False
     return True
 
+# Unique from the perspective that chess960 should not include the classic chess
+# starting positions. 
 def isUniquePos(pos):
     if (pos[4]=='K' and pos[3]=='Q'): # if normal king queen
-        if pos[0]=='R' and pos[7]=='R':
-            if pos[1]=='N' and pos[6]=='N':
-                if pos[2]=='B' and pos[5]=='B':
+        if pos[0]=='R' and pos[7]=='R': # if normal rooks
+            if pos[1]=='N' and pos[6]=='N': # if normal nights
+                if pos[2]=='B' and pos[5]=='B': # if normal s
                     return False
     else:
         return True
     
 
-def makeGeneric(pos):
+def makeGeneric(pos): # the actual piece order of minor pieces doesn't matter.
     gen = pos
     for p in range(len(gen)):
         if gen[p]=='B1' or gen[p]=='B2':
