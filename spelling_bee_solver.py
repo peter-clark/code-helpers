@@ -2,10 +2,10 @@ import sys, os
 # Code run with: python3 spelling_bee_solver.py LETTERS
 
 # Word list in UNIX systems
-_word_list = '/usr/share/dict/words'
+word_list = '/usr/share/dict/words'
 
 # Scrabble word list
-word_list = os.getcwd()+"/resources/sowpods.txt"
+#word_list = os.getcwd()+"/resources/sowpods.txt"
 
 def parse_words():
     with open(word_list) as wl:
