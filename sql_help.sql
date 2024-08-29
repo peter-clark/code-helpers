@@ -102,3 +102,32 @@ CREATE
 DELIMITER ;
 
 -- IF Statments must be ended
+
+-- This example below solves: Most recent price change before a date, otherwise pricing it 10
+WITH Prices AS (
+    SELECT
+        product_id,
+        new_price,
+        change_date,
+        ROW_NUMBER() OVER (
+            PARTITION BY product_id 
+            ORDER BY change_date DESC
+        ) AS recent -- ranking date by DESC means first row if most recent, used at end
+    FROM
+        Products
+    WHERE
+        change_date <= '2019-08-16'
+)
+SELECT
+    p.product_id,
+    COALESCE(pr.new_price,10) AS price -- use coalesce to check if price hasnt been set for product id
+FROM (
+    SELECT DISTINCT 
+        product_id 
+    FROM 
+        Products
+    ) p -- we only want each product once
+LEFT JOIN 
+    Prices pr
+    ON pr.product_id = p.product_id
+    AND pr.recent = 1;
