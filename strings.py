@@ -13,3 +13,14 @@ def isValid(self, s):
                 if not st or st.pop()!=bmap[i]:
                     return False
         return not st
+
+
+def repeatedSubstringPattern(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        # Concat s with itself. (s+s)
+        # Check if s exists, removing first and last char of concat
+        # If s exists in concat[1:-1], it is a substring repeated
+        return s in (s + s )[1: -1]
